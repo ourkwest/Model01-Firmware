@@ -426,14 +426,26 @@ public:
   LayerColorOverride_() {}
 
   uint8_t previous_top = -1;
+  unsigned long last_time = 0;
 
   kaleidoscope::EventHandlerResult afterEachCycle() {
     uint8_t top = Layer.top();
     if (top != previous_top) {
       LEDControl.setCrgbAt(0, 1 + previous_top, CRGB(0, 0, 0));
-      LEDControl.setCrgbAt(0, 1 + top, CRGB(0, 255, 0));
       previous_top = top;
+      last_time = millis();
     }
+
+    unsigned long difference = millis() - last_time;
+
+    if (difference < 2550) {
+      uint8_t brightness = 255 - (uint8_t)(difference / 10);
+      LEDControl.setCrgbAt(0, 1 + top, CRGB(0, brightness, 0));
+    }
+    else if (difference < 3000){
+      LEDControl.setCrgbAt(0, 1 + top, CRGB(0, 0, 0));
+    }
+
     return kaleidoscope::EventHandlerResult::OK;
   }
 };
