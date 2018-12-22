@@ -421,6 +421,25 @@ USE_MAGIC_COMBOS({.action = toggleKeyboardProtocol,
                   .keys = { R3C6, R2C6, R3C7 }
                  });
 
+class LayerColorOverride_: public kaleidoscope::Plugin {
+public:
+  LayerColorOverride_() {}
+
+  uint8_t previous_top = -1;
+
+  kaleidoscope::EventHandlerResult afterEachCycle() {
+    uint8_t top = Layer.top();
+    if (top != previous_top) {
+      LEDControl.setCrgbAt(0, 1 + previous_top, CRGB(0, 0, 0));
+      LEDControl.setCrgbAt(0, 1 + top, CRGB(0, 255, 0));
+      previous_top = top;
+    }
+    return kaleidoscope::EventHandlerResult::OK;
+  }
+};
+
+LayerColorOverride_ LayerColorOverride;
+
 // First, tell Kaleidoscope which plugins you want to use.
 // The order can be important. For example, LED effects are
 // added in the order they're listed here.
@@ -505,7 +524,9 @@ KALEIDOSCOPE_INIT_PLUGINS(
   // comfortable - or able - to do automatically, but can be useful
   // nevertheless. Such as toggling the key report protocol between Boot (used
   // by BIOSes) and Report (NKRO).
-  USBQuirks
+  USBQuirks,
+
+  LayerColorOverride
 );
 
 /** The 'setup' function is one of the two standard Arduino sketch functions.
