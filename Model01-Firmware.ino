@@ -227,14 +227,14 @@ KEYMAPS(
    Key_Backslash, Key_A, Key_S, Key_H, Key_T, Key_G,
    ___,           Key_Z, Key_X, Key_M, Key_C, Key_V, Key_Escape,
    Key_LeftControl, Key_Backspace, Key_LeftGui, Key_LeftShift,
-   ShiftToLayer(FUNCTION),
+   LockLayer(NAVIGATION),
 
    M(MACRO_ANY),  Key_6, Key_7, Key_8,     Key_9,         Key_0,         LockLayer(NUMPAD),
    Key_Enter,     Key_J, Key_F, Key_U,     Key_P,         Key_Semicolon, Key_Equals,
                   Key_Y, Key_N, Key_E,     Key_O,         Key_I,         Key_Quote,
    Key_RightAlt,  Key_K, Key_L, Key_Comma, Key_Period,    Key_Slash,     Key_Minus,
    Key_RightShift, Key_LeftAlt, Key_Spacebar, Key_RightControl,
-   LockLayer(NAVIGATION)),
+   ShiftToLayer(FUNCTION)),
 
 #else
 
@@ -250,14 +250,14 @@ KEYMAPS(
    ___, Key_Escape, Key_Spacebar, Key_Tab, Key_Enter, ___,
    ___, ___,        ___,          ___,     ___,       ___, ___,
    ___, ___,        ___,          ___,
-   ___,
+   LockLayer(NAVIGATION),
 
    ___, ___, ___,           ___,           ___,         ___,            ___,
    ___, ___, ___,           ___,           ___,         ___,            ___,
         ___, Key_LeftArrow, Key_DownArrow, Key_UpArrow, Key_RightArrow, ___,
    ___, ___, ___,           Key_PageDown,  Key_PageUp,  ___,            ___,
    ___, ___, ___, ___,
-   LockLayer(NAVIGATION)),
+   ___),
 
   [NUMPAD] =  KEYMAP_STACKED
   (___, ___, ___, ___, ___, ___, ___,
