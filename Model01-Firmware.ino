@@ -247,7 +247,7 @@ KEYMAPS(
   [NAVIGATION] =  KEYMAP_STACKED
   (___, ___,        ___,          ___,     ___,       ___, ___,
    ___, ___,        ___,          ___,     ___,       ___, ___,
-   ___, Key_Escape, Key_Spacebar, Key_Tab, Key_Enter, ___,
+   ___, Key_Escape, Key_Backtick, Key_Tab, Key_Enter, ___,
    ___, ___,        ___,          ___,     ___,       ___, ___,
    ___, ___,        ___,          ___,
    LockLayer(NAVIGATION),
