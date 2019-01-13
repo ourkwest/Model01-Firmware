@@ -423,36 +423,55 @@ USE_MAGIC_COMBOS({.action = toggleKeyboardProtocol,
                   .keys = { R3C6, R2C6, R3C7 }
                  });
 
-class LayerColorOverride_: public kaleidoscope::Plugin {
+class LightLayerColor_: public kaleidoscope::Plugin {
 public:
-  LayerColorOverride_() {}
+  LightLayerColor_() {}
 
   uint8_t previous_top = -1;
   unsigned long last_time = 0;
 
   kaleidoscope::EventHandlerResult afterEachCycle() {
+
     uint8_t top = Layer.top();
-    if (top != previous_top) {
-      LEDControl.setCrgbAt(0, 1 + previous_top, CRGB(0, 0, 0));
-      previous_top = top;
-      last_time = millis();
+    cRGB color;
+    if (top == 0) {
+      color = CRGB(50,200,100);
+    }
+    else if (top == 1) {
+      color = CRGB(0,0,0);
+    }
+    else if (top == 2) {
+      color = CRGB(200,0,0);
+    }
+    else if (top == 3) {
+      color = CRGB(0,0,200);
     }
 
-    unsigned long difference = millis() - last_time;
+    LEDControl.setCrgbAt(0,  0, color);
+    LEDControl.setCrgbAt(0,  1, color);
+    LEDControl.setCrgbAt(0,  2, color);
+    LEDControl.setCrgbAt(0,  3, color);
+    LEDControl.setCrgbAt(0,  4, color);
+    LEDControl.setCrgbAt(0,  5, color);
+    LEDControl.setCrgbAt(0,  6, color);
+    LEDControl.setCrgbAt(1,  6, color);
+    LEDControl.setCrgbAt(2,  6, color);
 
-    if (difference < 2550) {
-      uint8_t brightness = 255 - (uint8_t)(difference / 10);
-      LEDControl.setCrgbAt(0, 1 + top, CRGB(0, brightness, 0));
-    }
-    else if (difference < 3000){
-      LEDControl.setCrgbAt(0, 1 + top, CRGB(0, 0, 0));
-    }
+    LEDControl.setCrgbAt(2,  9, color);
+    LEDControl.setCrgbAt(1,  9, color);
+    LEDControl.setCrgbAt(0,  9, color);
+    LEDControl.setCrgbAt(0, 10, color);
+    LEDControl.setCrgbAt(0, 11, color);
+    LEDControl.setCrgbAt(0, 12, color);
+    LEDControl.setCrgbAt(0, 13, color);
+    LEDControl.setCrgbAt(0, 14, color);
+    LEDControl.setCrgbAt(0, 15, color);
 
     return kaleidoscope::EventHandlerResult::OK;
   }
 };
 
-LayerColorOverride_ LayerColorOverride;
+LightLayerColor_ LightLayerColor;
 
 // First, tell Kaleidoscope which plugins you want to use.
 // The order can be important. For example, LED effects are
@@ -540,7 +559,7 @@ KALEIDOSCOPE_INIT_PLUGINS(
   // by BIOSes) and Report (NKRO).
   USBQuirks,
 
-  LayerColorOverride,
+  LightLayerColor,
   SpaceCadet
 );
 
