@@ -252,10 +252,10 @@ KEYMAPS(
    ___, ___,        ___,          ___,
    LockLayer(NAVIGATION),
 
-   ___, ___, ___,           ___,           ___,         ___,            ___,
-   ___, ___, ___,           ___,           ___,         ___,            ___,
-        ___, Key_LeftArrow, Key_DownArrow, Key_UpArrow, Key_RightArrow, ___,
-   ___, ___, ___,           Key_PageDown,  Key_PageUp,  ___,            ___,
+   ___, ___, ___,                 ___,           ___,         ___,                  ___,
+   ___, ___, ___,                 ___,           ___,         ___,                  ___,
+        ___, Key_LeftArrow,       Key_DownArrow, Key_UpArrow, Key_RightArrow,       ___,
+   ___, ___, LGUI(Key_LeftArrow), Key_PageDown,  Key_PageUp,  LGUI(Key_RightArrow), ___,
    ___, ___, ___, ___,
    ___),
 
