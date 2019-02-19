@@ -452,17 +452,19 @@ public:
 
     uint8_t top = Layer.top();
     cRGB color;
-    if (top == 0) {
-      color = CRGB(50,200,100);
-    }
-    else if (top == 1) {
-      color = CRGB(0,0,0);
+
+    // top == 0 => fall through.
+    if (top == 1) {
+      color = CRGB(255,225,0);
+      //LEDControl.set_all_leds_to({255,225,0});
     }
     else if (top == 2) {
-      color = CRGB(200,0,0);
+      color = CRGB(0,210,250);
+      //LEDControl.set_all_leds_to({0,210,250});
     }
-    else if (top == 3) {
-      color = CRGB(0,0,200);
+    else {
+      //LEDControl.set_all_leds_to({0, 0, 0});
+      color = CRGB(0,0,0);
     }
 
     LEDControl.setCrgbAt(0,  0, color);
@@ -472,11 +474,31 @@ public:
     LEDControl.setCrgbAt(0,  4, color);
     LEDControl.setCrgbAt(0,  5, color);
     LEDControl.setCrgbAt(0,  6, color);
+    LEDControl.setCrgbAt(1,  0, color);
+    LEDControl.setCrgbAt(1,  1, color);
+    LEDControl.setCrgbAt(1,  2, color);
+    LEDControl.setCrgbAt(1,  3, color);
+    LEDControl.setCrgbAt(1,  4, color);
+    LEDControl.setCrgbAt(1,  5, color);
     LEDControl.setCrgbAt(1,  6, color);
+    LEDControl.setCrgbAt(2,  5, color);
     LEDControl.setCrgbAt(2,  6, color);
+    LEDControl.setCrgbAt(2,  7, color);
+    LEDControl.setCrgbAt(3,  5, color);
+    LEDControl.setCrgbAt(3,  7, color);
 
+    LEDControl.setCrgbAt(3,  8, color);
+    LEDControl.setCrgbAt(3, 10, color);
+    LEDControl.setCrgbAt(2,  8, color);
     LEDControl.setCrgbAt(2,  9, color);
+    LEDControl.setCrgbAt(2, 10, color);
     LEDControl.setCrgbAt(1,  9, color);
+    LEDControl.setCrgbAt(1, 10, color);
+    LEDControl.setCrgbAt(1, 11, color);
+    LEDControl.setCrgbAt(1, 12, color);
+    LEDControl.setCrgbAt(1, 13, color);
+    LEDControl.setCrgbAt(1, 14, color);
+    LEDControl.setCrgbAt(1, 15, color);
     LEDControl.setCrgbAt(0,  9, color);
     LEDControl.setCrgbAt(0, 10, color);
     LEDControl.setCrgbAt(0, 11, color);
