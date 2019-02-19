@@ -69,8 +69,6 @@
 // Support for USB quirks, like changing the key state report protocol
 #include "Kaleidoscope-USB-Quirks.h"
 
-// #include <Kaleidoscope-SpaceCadet.h>
-
 /** This 'enum' is a list of all the macros used by the Model 01's firmware
   * The names aren't particularly important. What is important is that each
   * is unique.
@@ -445,9 +443,6 @@ class LightLayerColor_: public kaleidoscope::Plugin {
 public:
   LightLayerColor_() {}
 
-  uint8_t previous_top = -1;
-  unsigned long last_time = 0;
-
   kaleidoscope::EventHandlerResult afterEachCycle() {
 
     uint8_t top = Layer.top();
@@ -456,14 +451,11 @@ public:
     // top == 0 => fall through.
     if (top == 1) {
       color = CRGB(255,225,0);
-      //LEDControl.set_all_leds_to({255,225,0});
     }
     else if (top == 2) {
       color = CRGB(0,210,250);
-      //LEDControl.set_all_leds_to({0,210,250});
     }
     else {
-      //LEDControl.set_all_leds_to({0, 0, 0});
       color = CRGB(0,0,0);
     }
 
@@ -600,7 +592,6 @@ KALEIDOSCOPE_INIT_PLUGINS(
   USBQuirks,
 
   LightLayerColor
-  // SpaceCadet
 );
 
 /** The 'setup' function is one of the two standard Arduino sketch functions.
@@ -639,17 +630,6 @@ void setup() {
   // by using the `settings.defaultLayer` Focus command.
   EEPROMKeymap.setup(5, EEPROMKeymap.Mode::EXTEND);
 
-//  static kaleidoscope::SpaceCadet::KeyBinding spacecadetmap[] = {
-//    {Key_LeftShift, Key_LeftParen, 250}
-//    , {Key_RightShift, Key_RightParen, 250}
-//    , {Key_LeftGui, Key_LeftCurlyBracket, 250}
-////    , {Key_RightAlt, Key_RightCurlyBracket, 250}
-//    , {Key_LeftAlt, Key_RightCurlyBracket, 250}
-//    , {Key_LeftControl, Key_LeftBracket, 250}
-//    , {Key_RightControl, Key_RightBracket, 250}
-//    , SPACECADET_MAP_END
-//  };
-//  SpaceCadet.map = spacecadetmap;
 }
 
 /** loop is the second of the standard Arduino sketch functions.
