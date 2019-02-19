@@ -69,7 +69,7 @@
 // Support for USB quirks, like changing the key state report protocol
 #include "Kaleidoscope-USB-Quirks.h"
 
-#include <Kaleidoscope-SpaceCadet.h>
+// #include <Kaleidoscope-SpaceCadet.h>
 
 /** This 'enum' is a list of all the macros used by the Model 01's firmware
   * The names aren't particularly important. What is important is that each
@@ -106,6 +106,8 @@ enum { MACRO_VERSION_INFO,
   *    https://github.com/keyboardio/Kaleidoscope/blob/master/src/key_defs_sysctl.h
   *    https://github.com/keyboardio/Kaleidoscope/blob/master/src/key_defs_keymaps.h
   *
+  * MOVED TO HERE --> https://github.com/keyboardio/Kaleidoscope/tree/bfa025b8be0f19ca895a42d8d33165750f9b6ad8/src/kaleidoscope
+  *
   * Additional things that should be documented here include
   *   using ___ to let keypresses fall through to the previously active layer
   *   using XXX to mark a keyswitch as 'blocked' on this layer
@@ -137,8 +139,8 @@ enum { MACRO_VERSION_INFO,
   * the numbers 0, 1 and 2.
   *
   */
-
-enum { PRIMARY, NAVIGATION, NUMPAD, FUNCTION }; // layers
+//     0        1           2        3       4
+enum { PRIMARY, NAVIGATION, SYMBOLS, NUMPAD, FUNCTION }; // layers
 
 
 /**
@@ -226,15 +228,15 @@ KEYMAPS(
    Key_Backtick,  Key_Q, Key_D, Key_R, Key_W, Key_B, Key_Tab,
    Key_Backslash, Key_A, Key_S, Key_H, Key_T, Key_G,
    ___,           Key_Z, Key_X, Key_M, Key_C, Key_V, Key_Escape,
-   Key_LeftControl, Key_Backspace, Key_LeftGui, Key_LeftShift,
-   LockLayer(NAVIGATION),
+   Key_LeftControl, Key_LeftAlt, Key_LeftGui, Key_LeftShift,
+   ShiftToLayer(NAVIGATION),
 
    M(MACRO_ANY),  Key_6, Key_7, Key_8,     Key_9,         Key_0,         LockLayer(NUMPAD),
    Key_Enter,     Key_J, Key_F, Key_U,     Key_P,         Key_Semicolon, Key_Equals,
                   Key_Y, Key_N, Key_E,     Key_O,         Key_I,         Key_Quote,
    Key_RightAlt,  Key_K, Key_L, Key_Comma, Key_Period,    Key_Slash,     Key_Minus,
    Key_RightShift, Key_LeftAlt, Key_Spacebar, Key_RightControl,
-   ShiftToLayer(FUNCTION)),
+   ShiftToLayer(SYMBOLS)),
 
 #else
 
@@ -245,19 +247,35 @@ KEYMAPS(
 
 
   [NAVIGATION] =  KEYMAP_STACKED
-  (___, ___,        ___,          ___,     ___,       ___, ___,
-   ___, ___,        ___,          ___,     ___,       ___, ___,
-   ___, Key_Escape, Key_Backtick, Key_Tab, Key_Enter, ___,
-   ___, ___,        ___,          ___,     ___,       ___, ___,
-   ___, ___,        ___,          ___,
-   LockLayer(NAVIGATION),
+  (___, ___,        ___,          ___,     ___,           ___, ___,
+   ___, ___,        ___,          ___,     ___,           ___, ___,
+   ___, Key_Escape, Key_Backtick, Key_Tab, Key_Enter,     ___,
+   ___, ___,        ___,          ___,     Key_Backspace, ___, ___,
+   ___, ___, ___, ___,
+   ___,
 
    ___, ___, ___,                 ___,           ___,         ___,                  ___,
-   ___, ___, ___,                 ___,           ___,         ___,                  ___,
+   ___, ___, Consumer_Mute, Consumer_VolumeDecrement, Consumer_VolumeIncrement, ___, ___,
         ___, Key_LeftArrow,       Key_DownArrow, Key_UpArrow, Key_RightArrow,       ___,
    ___, ___, LGUI(Key_LeftArrow), Key_PageDown,  Key_PageUp,  LGUI(Key_RightArrow), ___,
    ___, ___, ___, ___,
    ___),
+
+  [SYMBOLS] =  KEYMAP_STACKED
+  (___,    ___,    ___,                  ___,             ___,           ___,    ___,
+   Key_F1, Key_F2, Key_F3,               Key_F4,          Key_F5,        Key_F6, ___,
+   ___,    Key_1,  Key_2,                Key_3,           Key_4,         Key_5,
+   ___,    ___,    Key_LeftCurlyBracket, Key_LeftBracket, Key_LeftParen, ___,    ___,
+   ___, ___, ___, ___,
+   ___,
+
+   ___, ___,    ___,            ___,              ___,                   ___,     ___,
+   ___, Key_F7, Key_F8,         Key_F9,           Key_F10,               Key_F11, Key_F12,
+        Key_6,  Key_7,          Key_8,            Key_9,                 Key_0,   ___,
+   ___, ___,    Key_RightParen, Key_RightBracket, Key_RightCurlyBracket, ___,     ___,
+   ___, ___, ___, ___,
+   ___),
+
 
   [NUMPAD] =  KEYMAP_STACKED
   (___, ___, ___, ___, ___, ___, ___,
@@ -559,8 +577,8 @@ KALEIDOSCOPE_INIT_PLUGINS(
   // by BIOSes) and Report (NKRO).
   USBQuirks,
 
-  LightLayerColor,
-  SpaceCadet
+  LightLayerColor
+  // SpaceCadet
 );
 
 /** The 'setup' function is one of the two standard Arduino sketch functions.
@@ -599,17 +617,17 @@ void setup() {
   // by using the `settings.defaultLayer` Focus command.
   EEPROMKeymap.setup(5, EEPROMKeymap.Mode::EXTEND);
 
-  static kaleidoscope::SpaceCadet::KeyBinding spacecadetmap[] = {
-    {Key_LeftShift, Key_LeftParen, 250}
-    , {Key_RightShift, Key_RightParen, 250}
-    , {Key_LeftGui, Key_LeftCurlyBracket, 250}
-//    , {Key_RightAlt, Key_RightCurlyBracket, 250}
-    , {Key_LeftAlt, Key_RightCurlyBracket, 250}
-    , {Key_LeftControl, Key_LeftBracket, 250}
-    , {Key_RightControl, Key_RightBracket, 250}
-    , SPACECADET_MAP_END
-  };
-  SpaceCadet.map = spacecadetmap;
+//  static kaleidoscope::SpaceCadet::KeyBinding spacecadetmap[] = {
+//    {Key_LeftShift, Key_LeftParen, 250}
+//    , {Key_RightShift, Key_RightParen, 250}
+//    , {Key_LeftGui, Key_LeftCurlyBracket, 250}
+////    , {Key_RightAlt, Key_RightCurlyBracket, 250}
+//    , {Key_LeftAlt, Key_RightCurlyBracket, 250}
+//    , {Key_LeftControl, Key_LeftBracket, 250}
+//    , {Key_RightControl, Key_RightBracket, 250}
+//    , SPACECADET_MAP_END
+//  };
+//  SpaceCadet.map = spacecadetmap;
 }
 
 /** loop is the second of the standard Arduino sketch functions.
