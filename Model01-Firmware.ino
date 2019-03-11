@@ -257,22 +257,22 @@ KEYMAPS(
 
    ___, ___, ___,                 ___,           ___,         ___,                  ___,
    ___, ___, Consumer_Mute, Consumer_VolumeDecrement, Consumer_VolumeIncrement, ___, ___,
-        ___, Key_LeftArrow,       Key_DownArrow, Key_UpArrow, Key_RightArrow,       ___,
-   ___, ___, LGUI(Key_LeftArrow), Key_PageDown,  Key_PageUp,  LGUI(Key_RightArrow), ___,
+        ___, Key_LeftArrow, Key_DownArrow, Key_UpArrow, Key_RightArrow, ___,
+   ___, ___, Key_Home,      Key_PageDown,  Key_PageUp,  Key_End,        ___,
    ___, ___, ___, ___,
    ___),
 
   [SYMBOLS] =  KEYMAP_STACKED
   (___,    ___,    ___,                  ___,             ___,           ___,    ___,
-   Key_F1, Key_F2, Key_F3,               Key_F4,          Key_F5,        Key_F6, ___,
+   ___,    Key_F1, Key_F2,               Key_F3,          Key_F4,        Key_F5, ___,
    ___,    Key_1,  Key_2,                Key_3,           Key_4,         Key_5,
    ___,    ___,    Key_LeftCurlyBracket, Key_LeftBracket, Key_LeftParen, ___,    ___,
    ___, ___, ___, ___,
    ___,
 
    ___, ___,    ___,            ___,              ___,                   ___,     ___,
-   ___, Key_F7, Key_F8,         Key_F9,           Key_F10,               Key_F11, Key_F12,
-        Key_6,  Key_7,          Key_8,            Key_9,                 Key_0,   ___,
+   ___, Key_F6, Key_F7,         Key_F8,           Key_F9,                Key_F10, Key_F11,
+        Key_6,  Key_7,          Key_8,            Key_9,                 Key_0,   Key_F12,
    ___, ___,    Key_RightParen, Key_RightBracket, Key_RightCurlyBracket, ___,     ___,
    ___, ___, ___, ___,
    ___),
@@ -633,7 +633,6 @@ void setup() {
   // To make the keymap editable without flashing new firmware, we store
   // additional layers in EEPROM. For now, we reserve space for five layers. If
   // one wants to use these layers, just set the default layer to one in EEPROM,
-
   // by using the `settings.defaultLayer` Focus command, or by using the
   // `keymap.onlyCustom` command to use EEPROM layers only.
   EEPROMKeymap.setup(5);
