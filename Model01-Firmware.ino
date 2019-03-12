@@ -248,10 +248,10 @@ KEYMAPS(
 
 
   [NAVIGATION] =  KEYMAP_STACKED
-  (___, ___,        ___,          ___,     ___,           ___, ___,
-   ___, ___,        ___,          ___,     ___,           ___, ___,
-   ___, Key_Escape, Key_Backtick, Key_Tab, Key_Enter,     ___,
-   ___, ___,        ___,          ___,     Key_Backspace, ___, ___,
+  (___, ___,        ___,          ___,               ___,           ___, ___,
+   ___, ___,        ___,          ___,               ___,           ___, ___,
+   ___, Key_Escape, Key_Backtick, Key_Tab,           Key_Enter,     ___,
+   ___, ___,        ___,          Key_PcApplication, Key_Backspace, ___, ___,
    ___, ___, ___, ___,
    ___,
 
