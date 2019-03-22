@@ -225,10 +225,10 @@ KEYMAPS(
   // Alphabetic keys are the Workman Layout.
   // Non-alphabetic keys, well, they have to move anyway because the physical layout is non-standard.
   [PRIMARY] = KEYMAP_STACKED
-  (___,           Key_1, Key_2, Key_3, Key_4, Key_5, Key_LEDEffectNext,
-   Key_Backtick,  Key_Q, Key_D, Key_R, Key_W, Key_B, Key_Tab,
-   Key_Backslash, Key_A, Key_S, Key_H, Key_T, Key_G,
-   ___,           Key_Z, Key_X, Key_M, Key_C, Key_V, Key_Escape,
+  (LockLayer(QWERTY_OVERLAY), Key_1, Key_2, Key_3, Key_4, Key_5, Key_LEDEffectNext,
+   Key_Backtick,              Key_Q, Key_D, Key_R, Key_W, Key_B, Key_Tab,
+   Key_Backslash,             Key_A, Key_S, Key_H, Key_T, Key_G,
+   ___,                       Key_Z, Key_X, Key_M, Key_C, Key_V, Key_Escape,
    Key_LeftControl, Key_LeftAlt, Key_LeftGui, Key_LeftShift,
    ShiftToLayer(NAVIGATION),
 
@@ -245,6 +245,20 @@ KEYMAPS(
 
 #endif
 
+  [QWERTY_OVERLAY] = KEYMAP_STACKED
+  (___, ___,   ___,   ___,   ___,   ___,   ___,
+   ___, Key_Q, Key_W, Key_E, Key_R, Key_T, ___,
+   ___, Key_A, Key_S, Key_D, Key_F, Key_G,
+   ___, Key_Z, Key_X, Key_C, Key_V, Key_B, ___,
+   ___, ___, ___, ___,
+   ___,
+
+   ___, ___,   ___,   ___,       ___,           ___,           ___,
+   ___, Key_Y, Key_U, Key_I,     Key_O,         Key_P,         ___,
+        Key_H, Key_J, Key_K,     Key_L,         Key_Semicolon, ___,
+   ___, Key_N, Key_M, Key_Comma, Key_Period,    Key_Slash,     ___,
+   ___, ___, ___, ___,
+   ___),
 
 
   [NAVIGATION] =  KEYMAP_STACKED
