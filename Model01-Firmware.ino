@@ -300,10 +300,10 @@ KEYMAPS(
    ___, ___, ___, ___,
    ___,
 
-   M(MACRO_VERSION_INFO),  ___, Key_Keypad7, Key_Keypad8,   Key_Keypad9,        Key_KeypadSubtract, ___,
-   ___,                    ___, Key_Keypad4, Key_Keypad5,   Key_Keypad6,        Key_KeypadAdd,      ___,
-                           ___, Key_Keypad1, Key_Keypad2,   Key_Keypad3,        Key_Equals,         ___,
-   ___,                    ___, Key_Keypad0, Key_KeypadDot, Key_KeypadMultiply, Key_KeypadDivide,   Key_Enter,
+   M(MACRO_VERSION_INFO),  ___, Key_7, Key_8,      Key_9,              Key_KeypadSubtract, ___,
+   ___,                    ___, Key_4, Key_5,      Key_6,              Key_KeypadAdd,      ___,
+                           ___, Key_1, Key_2,      Key_3,              Key_Equals,         ___,
+   ___,                    ___, Key_0, Key_Period, Key_KeypadMultiply, Key_KeypadDivide,   Key_Enter,
    ___, ___, ___, ___,
    ___),
 
@@ -426,19 +426,6 @@ void toggleLedsOnSuspendResume(kaleidoscope::plugin::HostPowerManagement::Event 
 void hostPowerManagementEventHandler(kaleidoscope::plugin::HostPowerManagement::Event event) {
   toggleLedsOnSuspendResume(event);
 }
-
-/** This 'enum' is a list of all the magic combos used by the Model 01's
- * firmware The names aren't particularly important. What is important is that
- * each is unique.
- *
- * These are the names of your magic combos. They will be used by the
- * `USE_MAGIC_COMBOS` call below.
- */
-enum {
-  // Toggle between Boot (6-key rollover; for BIOSes and early boot) and NKRO
-  // mode.
-  COMBO_TOGGLE_NKRO_MODE
-};
 
 /** A tiny wrapper, to be used by MagicCombo.
  * This simply toggles the keyboard protocol via USBQuirks, and wraps it within
