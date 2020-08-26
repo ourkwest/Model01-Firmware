@@ -140,8 +140,8 @@ enum { MACRO_VERSION_INFO,
   * the numbers 0, 1 and 2.
   *
   */
-//     0        1               2           3        4
-enum { PRIMARY, QWERTY_OVERLAY, NAVIGATION, SYMBOLS, NUMPAD, FUNCTION }; // layers
+//     0        1           2        3       4
+enum { PRIMARY, NAVIGATION, SYMBOLS, NUMPAD, FUNCTION }; // layers
 
 
 /**
@@ -453,10 +453,10 @@ public:
     cRGB color;
 
     // top == 0 => fall through.
-    if (top == 2) {
+    if (top == 1) {
       color = CRGB(255,225,0);
     }
-    else if (top == 3) {
+    else if (top == 2) {
       color = CRGB(0,210,250);
     }
     else {
